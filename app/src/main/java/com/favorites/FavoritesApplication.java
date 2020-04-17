@@ -27,7 +27,7 @@ public class FavoritesApplication extends SpringBootServletInitializer {
         Map b = new HashMap<String, String>();
         b.put("a", "1");
         b.put("b", "2");
-        // 1.
+        // 1. entrySet
         Iterator<Entry<String, String>> iterator = b.entrySet().iterator();
         while (iterator.hasNext()){
             Entry<String, String> next = iterator.next();
@@ -35,7 +35,7 @@ public class FavoritesApplication extends SpringBootServletInitializer {
             next.getValue();
         }
 
-        // 2.jdk1.8开始自带的遍历方法
+        // 2.jdk1.8开始自带的遍历方法,内部使用entrySet实现
         b.forEach(new BiConsumer() {
             @Override
             public void accept(Object key, Object value) {
@@ -45,5 +45,11 @@ public class FavoritesApplication extends SpringBootServletInitializer {
 //        b.forEach((key, value) -> {
 //            System.out.println(key + ":" + value);
 //        });
+
+        // 3. keySet(不推荐)
+        for (Object key : b.keySet()) {
+            String s = (String) key;
+            System.out.println(s);
+        }
     }
 }
